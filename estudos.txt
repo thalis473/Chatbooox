@@ -1,0 +1,12 @@
+
+
+##Segundo Dia
+
+**Instalação e configuração do frameork Typeorm**
+** Criaçao de migrations , e configuração delas**
+** Criação de entidades**
+** Criação dos repositorios**
+** Criação da rota post (tabela settings)**
+** Conhecimento da nova ferramenta Beekeeper**
+** Modulaçao das rotas **
+** Subida do projeto no Github**
