@@ -10,3 +10,10 @@
 ** Conhecimento da nova ferramenta Beekeeper**
 ** Modulaçao das rotas **
 ** Subida do projeto no Github**
+
+
+## Terceiro Dia
+
+**Criação das tabelas User, Mensagem**
+**Ciação das Entidades -> Repository -> Services -> Controllers -> Rotas de respectivas tabelas**
+**Refatoração dos Services, acrescentando em cada class uma propiedade private, com o this**
