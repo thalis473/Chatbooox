@@ -1,12 +1,12 @@
 import {Request, Response} from "express"
-import{MenssagensServices} from "../services/MenssagensServices";
+import{MessagesServices} from "../services/MenssagensServices";
 
 class  MenssagensController{
     async create(request:Request, response:Response){
 
         const {admin_id, text, user_id} =request.body;
 
-        const menssagensServices = new MenssagensServices();
+        const menssagensServices = new MessagesServices();
 
         const menssage= await menssagensServices.create({
             admin_id,
@@ -20,7 +20,7 @@ class  MenssagensController{
         
         const{id} =request.params;
 
-        const menssagesServices=new MenssagensServices();
+        const menssagesServices=new MessagesServices();
 
         const list= await menssagesServices.listByuser(id); //pegando a funçao list que vem do services
 

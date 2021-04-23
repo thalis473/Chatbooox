@@ -1,42 +1,53 @@
-import{getCustomRepository, Repository} from "typeorm";
-import { Setting } from "../entities/Setting";
-import {SettingsRepository} from "../repositories/SettingsRepository"
+import { getCustomRepository } from 'typeorm';
+import { Setting } from '../entities/Setting';
 
+import { SettingsRepository } from '../repositories/SettingsRepository';
 
-interface ISettingsCreate{
-    chat:boolean;
-    username:string;
+interface ISettingsCreate {
+  chat: boolean;
+  username: string;
 }
 
-//Regra de negocios fica aqui
-class SettingsServices{
-    private settingsRepository: Repository<Setting>;
-    constructor(){
-        this.settingsRepository = getCustomRepository(SettingsRepository);
+class SettingsService {
+  private settingsRepository: SettingsRepository;
+
+  constructor() {
+    this.settingsRepository = getCustomRepository(SettingsRepository);
+  }
+
+  async create({ chat, username }: ISettingsCreate) {
+    const settingsAlreadyExists = await this.settingsRepository.findOne({
+      username,
+    });
+
+    if (settingsAlreadyExists) {
+      throw new Error('Settings already exists.');
     }
 
-async create({chat,username}:ISettingsCreate){
-   
-    
-//Select* from settings where username ="username" limit 1
-    const userAlreadyExists = await this.settingsRepository.findOne({ username})
+    const setting = this.settingsRepository.create({
+      chat,
+      username,
+    });
 
-    if(userAlreadyExists){ 
-        throw new Error("User already exists!");
-    }
+    await this.settingsRepository.save(setting);
 
-    //Criacao do usuario
-    const settings = this.settingsRepository.create({
-        chat,
-        username
-    })
-// Salvamento no banco de dados
-    await this.settingsRepository.save(settings);
+    return setting;
+  }
+
+  async findByUsername(username: string) {
+    const settings = await this.settingsRepository.findOne({ username });
 
     return settings;
-    
+  }
+
+  async update(username: string, chat: boolean) {
+    await this.settingsRepository
+      .createQueryBuilder()
+      .update(Setting)
+      .set({ chat })
+      .where('username = :username', { username })
+      .execute();
+  }
 }
 
-}
-
-export{SettingsServices}
+export { SettingsService };

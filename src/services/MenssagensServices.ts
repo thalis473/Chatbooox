@@ -8,7 +8,7 @@ interface IMenssageCreate{
     user_id:string
 }
 
-class MenssagensServices{
+class MessagesServices{
    private menssagesRepository : Repository<Menssages>
    constructor(){
        this.menssagesRepository = getCustomRepository(MenssagesRepository);
@@ -37,4 +37,4 @@ class MenssagensServices{
     
 }
 
-export{MenssagensServices}
+export{MessagesServices}

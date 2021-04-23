@@ -17,3 +17,15 @@
 **Criação das tabelas User, Mensagem**
 **Ciação das Entidades -> Repository -> Services -> Controllers -> Rotas de respectivas tabelas**
 **Refatoração dos Services, acrescentando em cada class uma propiedade private, com o this**
+
+## Quarto Dia
+
+** oque e um protocolo htttp**
+**como eles funciona a diferenca dele pro websockt**
+**oque e websockt , como ele funciona**
+**instalamos a estrutura do websockt**
+
+
+##Quinta e ultimo Dia
+
+
